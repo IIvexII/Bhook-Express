@@ -6,7 +6,7 @@ import "./styles/global.css";
 export default function App() {
   return (
     <View className="flex-1 items-center justify-center">
-      <Text>Hello the Typescript + Nativewind is working!</Text>
+      <Text>Hello</Text>
       <StatusBar style="auto" />
     </View>
   );

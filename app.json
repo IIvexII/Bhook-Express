@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "react-native-nativewind-ts",
-    "slug": "react-native-nativewind-ts",
+    "name": "Bhook Express",
+    "slug": "bhook-express",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
