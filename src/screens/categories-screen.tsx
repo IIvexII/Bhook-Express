@@ -12,6 +12,7 @@ export default function CategoriesScreen() {
         <CategoriesItem id={item.id} title={item.title} color={item.color} />
       )}
       numColumns={2}
+      className="bg-orange-950"
     />
   );
 }

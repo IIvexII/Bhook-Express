@@ -1,7 +1,9 @@
 import { useNavigation } from "@react-navigation/native";
 import { Image, Pressable, Text, View } from "react-native";
+import MealShortDescription from "./meal-short-description";
 
 type MealItemProps = {
+  id: string;
   title: string;
   imageUrl: string;
   affordability: string;
@@ -13,11 +15,11 @@ export default function MealItem(props: MealItemProps) {
   const navigation = useNavigation();
 
   function handleOnPress() {
-    navigation.navigate("Categories");
+    navigation.navigate("Meal Details", { id: props.id });
   }
 
   return (
-    <View className="m-4 flex-1 rounded-xl bg-white">
+    <View className="m-6 flex-1 rounded-xl border border-gray-600 bg-white shadow-lg">
       <Pressable
         android_ripple={{ color: "white" }}
         onPress={handleOnPress}
@@ -30,11 +32,13 @@ export default function MealItem(props: MealItemProps) {
         <View className="mx-6 my-6 flex-1">
           <Text className="text-lg font-bold">{props.title}</Text>
 
-          <View className="mt-2 flex-row gap-4">
-            <Text className="text-sm">{props.duration}m</Text>
-            <Text className="text-sm uppercase">{props.complexity}</Text>
-            <Text className="text-sm capitalize">{props.affordability}</Text>
-          </View>
+          {/* 
+            Show Short Description which whill contain:
+            - Duration
+            - Complexity
+            - Affordability
+          */}
+          <MealShortDescription className="mt-2" {...props} />
         </View>
       </Pressable>
     </View>

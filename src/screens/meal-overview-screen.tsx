@@ -1,4 +1,4 @@
-import { View, Text, FlatList } from "react-native";
+import { View, FlatList } from "react-native";
 import React from "react";
 import { RouteProp, useRoute } from "@react-navigation/native";
 import { RootStackParamList } from "../navigation/types";
@@ -14,18 +14,18 @@ export default function MealOverviewScreen() {
   const route = useRoute<MealOverviewScreenRouteProp>();
 
   const id = route.params.id;
-  const title = route.params.title;
 
   const meals = MEALS.filter((meal) => meal.categoryIds.includes(id));
 
   return (
-    <View>
+    <View className="flex-1 bg-orange-950 pt-6">
       <FlatList
         data={meals}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           // Single Meal Item Card
           <MealItem
+            id={item.id}
             title={item.title}
             imageUrl={item.imageUrl}
             affordability={item.affordability}

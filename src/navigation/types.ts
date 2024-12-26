@@ -5,6 +5,9 @@ export type RootStackParamList = {
     id: string;
     title: string;
   };
+  "Meal Details": {
+    id: string;
+  };
 };
 
 // This tells React Navigation about our root navigator type
