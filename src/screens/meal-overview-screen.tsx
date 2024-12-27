@@ -1,6 +1,6 @@
 import { View, FlatList } from "react-native";
-import React from "react";
-import { RouteProp, useRoute } from "@react-navigation/native";
+import React, { useLayoutEffect } from "react";
+import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { RootStackParamList } from "../navigation/types";
 import { MEALS } from "../data/dummy-data";
 import MealItem from "../components/meal-item";
@@ -12,8 +12,16 @@ type MealOverviewScreenRouteProp = RouteProp<
 
 export default function MealOverviewScreen() {
   const route = useRoute<MealOverviewScreenRouteProp>();
+  const navigation = useNavigation();
 
   const id = route.params.id;
+
+  // change the title of the screen
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      title: route.params.title,
+    });
+  });
 
   const meals = MEALS.filter((meal) => meal.categoryIds.includes(id));
 

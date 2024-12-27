@@ -31,13 +31,6 @@ export default function MealItem(props: MealItemProps) {
         />
         <View className="mx-6 my-6 flex-1">
           <Text className="text-lg font-bold">{props.title}</Text>
-
-          {/* 
-            Show Short Description which whill contain:
-            - Duration
-            - Complexity
-            - Affordability
-          */}
           <MealShortDescription className="mt-2" {...props} />
         </View>
       </Pressable>
