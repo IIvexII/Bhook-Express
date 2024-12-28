@@ -1,4 +1,3 @@
-import AntDesign from "@expo/vector-icons/AntDesign";
 import { View, Text, Image, FlatList } from "react-native";
 import React, { useLayoutEffect } from "react";
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";

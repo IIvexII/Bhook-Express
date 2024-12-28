@@ -17,15 +17,16 @@ type RootStackParamList = {
 const Stack = createStackNavigator<RootStackParamList>();
 
 export default function App() {
+  // screen options for all screens in the stack
+  const stackScreenOptions = {
+    headerTintColor: "white",
+    headerStyle: { backgroundColor: "#653700" },
+  };
+
   return (
     <>
       <NavigationContainer>
-        <Stack.Navigator
-          screenOptions={{
-            headerTintColor: "white",
-            headerStyle: { backgroundColor: "#653700" },
-          }}
-        >
+        <Stack.Navigator screenOptions={stackScreenOptions}>
           <Stack.Screen name="Categories" component={CategoriesScreen} />
           <Stack.Screen name="Meals Overview" component={MealOverviewScreen} />
           <Stack.Screen name="Meal Details" component={MealDetailsScreen} />
