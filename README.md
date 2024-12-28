@@ -1,12 +1,17 @@
-# React Native Starter Template with NativeWind 🎨
+# Bhook Express
 
-This repository provides a **starter template** for React Native projects with **NativeWind** (Tailwind CSS for React Native) pre-configured, allowing you to build modern, responsive, and efficient mobile applications quickly and easily.
+Bhook Express is a React Native application that provides a variety of recipes and ingredients for different meals. The app categorizes meals into different types such as Italian, Hamburgers, and more.
 
----
+## Features
 
-## ✨ Features
+- Browse recipes for various meals
+- View ingredients for each recipe
+- Explore different meal categories
+  - Italian
+  - Hamburger
+  - And more...
 
-- **React Native CLI** project structure.
-- Pre-configured **NativeWind** for utility-first styling.
-- Minimal configuration.
-- Ready-to-use setup for immediate development.
+## Technologies Used
+
+- React Native
+- Typescript
