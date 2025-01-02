@@ -1,5 +1,5 @@
-import { View, Text, Image, FlatList } from "react-native";
-import React, { useLayoutEffect } from "react";
+import { View, Text, Image, FlatList, Pressable, TouchableOpacity } from "react-native";
+import React, { useContext, useLayoutEffect, useState } from "react";
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 
 import { RootStackParamList } from "../navigation/types";
@@ -9,19 +9,41 @@ import List from "../components/list";
 import Subtitle from "../components/subtitle";
 import IconButton from "../components/icon-button";
 import { shortenText } from "../lib/utils";
+import { FavoriteMealsContext } from "../store/context/favorite-meals";
 
 type MealDetailsScreenRouteProp = RouteProp<RootStackParamList, "Meal Details">;
 
 export default function MealDetailsScreen() {
+  const favoriteMealIds = useContext(FavoriteMealsContext);
   const route = useRoute<MealDetailsScreenRouteProp>();
   const navigation = useNavigation();
+  const [isFavorite, setIsFavorite] = useState(false);
 
   const meal = MEALS.find((meal) => meal.id === route.params.id);
 
+  function toggleFavorite() {
+    if (isFavorite) {
+      favoriteMealIds.removeFavorite(meal?.id || "");
+    } else {
+      favoriteMealIds.addFavorite(meal?.id || "");
+    }
+  }
+
   useLayoutEffect(() => {
+    setIsFavorite(favoriteMealIds.favoriteMeals.includes(meal?.id || ""));
+
     navigation.setOptions({
       title: shortenText(meal?.title || "Meals Details", 20),
-      headerRight: () => <IconButton name="star" size={30} color="white" />,
+      headerRight: () => {
+        return (
+            <IconButton
+              name={isFavorite ? "star" : "staro"}
+              size={30}
+              color="white"
+              onPress={toggleFavorite}
+            />
+        );
+      },
     });
   });
 

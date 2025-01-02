@@ -7,6 +7,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import MealOverviewScreen from "./screens/meal-overview-screen";
 import MealDetailsScreen from "./screens/meals-details-screen";
+import { FavoriteMealsProvider } from "./store/context/favorite-meals";
 
 type RootStackParamList = {
   Categories: undefined;
@@ -26,11 +27,13 @@ export default function App() {
   return (
     <>
       <NavigationContainer>
-        <Stack.Navigator screenOptions={stackScreenOptions}>
-          <Stack.Screen name="Categories" component={CategoriesScreen} />
-          <Stack.Screen name="Meals Overview" component={MealOverviewScreen} />
-          <Stack.Screen name="Meal Details" component={MealDetailsScreen} />
-        </Stack.Navigator>
+        <FavoriteMealsProvider>
+          <Stack.Navigator screenOptions={stackScreenOptions}>
+            <Stack.Screen name="Categories" component={CategoriesScreen} />
+            <Stack.Screen name="Meals Overview" component={MealOverviewScreen} />
+            <Stack.Screen name="Meal Details" component={MealDetailsScreen} />
+          </Stack.Navigator>
+        </FavoriteMealsProvider>
       </NavigationContainer>
       <StatusBar style="light" />
     </>
