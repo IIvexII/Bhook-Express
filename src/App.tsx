@@ -2,37 +2,55 @@ import "./styles/global.css";
 
 import React from "react";
 import { StatusBar } from "expo-status-bar";
-import CategoriesScreen from "./screens/categories-screen";
-import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
-import MealOverviewScreen from "./screens/meal-overview-screen";
-import MealDetailsScreen from "./screens/meals-details-screen";
+import { Ionicons } from "@expo/vector-icons";
+import {
+  BottomTabNavigationOptions,
+  createBottomTabNavigator,
+} from "@react-navigation/bottom-tabs";
+
 import { FavoriteMealsProvider } from "./store/context/favorite-meals";
+import StackNavigation from "./navigation/stack-navigation";
 
-type RootStackParamList = {
-  Categories: undefined;
-  "Meals Overview": { title: string } | undefined;
-  "Meal Details": { id: string } | undefined;
-};
-
-const Stack = createStackNavigator<RootStackParamList>();
+const Tabs = createBottomTabNavigator();
 
 export default function App() {
-  // screen options for all screens in the stack
-  const stackScreenOptions = {
-    headerTintColor: "white",
-    headerStyle: { backgroundColor: "#653700" },
+  const tabsOptions: BottomTabNavigationOptions = {
+    headerShown: false,
+    tabBarStyle: {
+      backgroundColor: "#653700",
+      flexDirection: "row",
+    },
+    tabBarActiveTintColor: "white",
+    tabBarInactiveTintColor: "rgba(255, 255, 255, 0.5)",
   };
 
   return (
     <>
       <NavigationContainer>
         <FavoriteMealsProvider>
-          <Stack.Navigator screenOptions={stackScreenOptions}>
-            <Stack.Screen name="Categories" component={CategoriesScreen} />
-            <Stack.Screen name="Meals Overview" component={MealOverviewScreen} />
-            <Stack.Screen name="Meal Details" component={MealDetailsScreen} />
-          </Stack.Navigator>
+          <Tabs.Navigator screenOptions={tabsOptions}>
+            {/* home screen */}
+            <Tabs.Screen
+              name="Home"
+              component={StackNavigation}
+              options={{
+                tabBarIcon: ({ color }) => (
+                  <Ionicons name={"home"} size={24} color={color} />
+                ),
+              }}
+            />
+            {/* home screen */}
+            <Tabs.Screen
+              name="Favorites"
+              component={StackNavigation}
+              options={{
+                tabBarIcon: ({ color }) => (
+                  <Ionicons name={"star"} size={24} color={color} />
+                ),
+              }}
+            />
+          </Tabs.Navigator>
         </FavoriteMealsProvider>
       </NavigationContainer>
       <StatusBar style="light" />
