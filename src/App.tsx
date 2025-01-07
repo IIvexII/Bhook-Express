@@ -11,7 +11,11 @@ import {
 
 import { FavoriteMealsProvider } from "./store/context/favorite-meals";
 import StackNavigation from "./navigation/stack-navigation";
+import FavoritesScreen from "./screens/favorites-screen";
+import { createStackNavigator } from "@react-navigation/stack";
+import { RootStackParamList } from "./navigation/types";
 
+const Stack = createStackNavigator<RootStackParamList>();
 const Tabs = createBottomTabNavigator();
 
 export default function App() {
@@ -29,28 +33,28 @@ export default function App() {
     <>
       <NavigationContainer>
         <FavoriteMealsProvider>
-          <Tabs.Navigator screenOptions={tabsOptions}>
-            {/* home screen */}
-            <Tabs.Screen
-              name="Home"
-              component={StackNavigation}
-              options={{
-                tabBarIcon: ({ color }) => (
-                  <Ionicons name={"home"} size={24} color={color} />
-                ),
-              }}
-            />
-            {/* home screen */}
-            <Tabs.Screen
-              name="Favorites"
-              component={StackNavigation}
-              options={{
-                tabBarIcon: ({ color }) => (
-                  <Ionicons name={"star"} size={24} color={color} />
-                ),
-              }}
-            />
-          </Tabs.Navigator>
+            <Tabs.Navigator screenOptions={tabsOptions}>
+              {/* home screen */}
+              <Tabs.Screen
+                name="Home"
+                component={StackNavigation}
+                options={{
+                  tabBarIcon: ({ color }) => (
+                    <Ionicons name={"home"} size={24} color={color} />
+                  ),
+                }}
+              />
+              {/* home screen */}
+              <Tabs.Screen
+                name="Favorites"
+                component={FavoritesScreen}
+                options={{
+                  tabBarIcon: ({ color }) => (
+                    <Ionicons name={"star"} size={24} color={color} />
+                  ),
+                }}
+              />
+            </Tabs.Navigator>
         </FavoriteMealsProvider>
       </NavigationContainer>
       <StatusBar style="light" />
